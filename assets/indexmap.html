@@ -22,28 +22,50 @@
         </div>
         <div class="col-sm tituloPage">
           <div>
-            <h1>FOOD MAP<i class="fas fa-feather"></i></h1>
+            <h1>FOOD MAP
+              <i class="fas fa-feather"></i>
+            </h1>
           </div>
-          <div id="map"></div>
-          <div>
-            <div class="input-group input-group-sm mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Buscador</span>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Busca tus comidas mas cercanas
+            <i class="fas fa-utensils"></i>
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div>
+                    <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Buscador</span>
+                      </div>
+                      <input type="text" id="pac-input" class="form-control" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="map">
+
+                </div>
+                <div class="modal-footer">
+                </div>
+                <!-- Termino Modal -->
               </div>
-              <input type="text" id="pac-input" class="form-control" aria-describedby="inputGroup-sizing-sm">
             </div>
           </div>
-          </div>
-          <div class="col-sm">
+        </div>
+        <div class="col-sm">
 
 
-          </div>
-        
+        </div>
+
       </div>
     </div>
   </section>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
