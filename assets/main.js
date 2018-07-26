@@ -14,6 +14,7 @@ function initMap() {
     zoom: 15,
     mapTypeId: "roadmap",
     radius: "500"
+
   });
   let infoWindow = new google.maps.InfoWindow();
 
@@ -48,10 +49,18 @@ function initMap() {
     // For each place, get the icon, name and location.
     let bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
-      if (!place.geometry) {
-        console.log("Returned place contains no geometry");
+      if (!place.geometry) {     
         return;
+      } 
+
+      // forma de comparar en una function
+      // funcion en linea 
+      if(place.types.filter(x => x == "restaurant","food",).length == 0){
+       return; 
       }
+      
+      console.log(place)
+
       let icon = {
         url: place.icon,
         size: new google.maps.Size(71, 71),
