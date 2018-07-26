@@ -1,35 +1,37 @@
-window.onload = () => { 
-function timeout() {
-  window.setTimeout("redirect()", 2000);
-}
+window.onload = () => {
+  function timeout() {
+    window.setTimeout("redirect()", 2000);
+  }
 
-function redirect() {
-  window.location = "indexmap.html";
-}
+  function redirect() {
+    window.location = "indexmap.html";
+  }
+};
 
-}
-function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -33.47269, lng: -70.64724 },
-    zoom: 13,
+function initMap() {
+  let map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -33.4, lng: -70.6 },
+    zoom: 15,
     mapTypeId: "roadmap"
   });
+  let infoWindow = new google.maps.InfoWindow();
 
   // Create the search box and link it to the UI element.
-  var input = document.getElementById("pac-input");
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  let input = document.getElementById("pac-input");
+  input.value = "";
+  let searchBox = new google.maps.places.SearchBox(input);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
+  let markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", function() {
-    var places = searchBox.getPlaces();
+    let places = searchBox.getPlaces();
 
     if (places.length == 0) {
       return;
@@ -42,13 +44,13 @@ function initAutocomplete() {
     markers = [];
 
     // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
+    let bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
       }
-      var icon = {
+      let icon = {
         url: place.icon,
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
@@ -75,27 +77,16 @@ function initAutocomplete() {
     });
     map.fitBounds(bounds);
   });
-}
-function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 13,
-    mapTypeId: "roadmap"
-  });
-
-  let infoWindow = new google.maps.InfoWindow();
-
-  // Prueba la geolocalización de HTML5.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       function(position) {
-        var pos = {
+        let pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
 
         infoWindow.setPosition(pos);
-        infoWindow.setContent("Ubicación encontrada");
+        infoWindow.setContent("Ubicación actual");
         infoWindow.open(map);
         map.setCenter(pos);
       },
@@ -104,7 +95,36 @@ function initMap() {
       }
     );
   } else {
-    // El navegador no admite la geolocalización
+    // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(
+      browserHasGeolocation
+        ? "Error: The Geolocation service failed."
+        : "Error: Your browser doesn't support geolocation."
+    );
+    infoWindow.open(map);
+  }
 }
+// let infowindow = new google.maps.InfoWindow();
+//   let service = new google.maps.places.PlacesService(map);
+
+//   service.getDetails({
+//     placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
+//   }, function(place, status) {
+//     if (status === google.maps.places.PlacesServiceStatus.OK) {
+//       let marker = new google.maps.Marker({
+//         map: map,
+//         position: place.geometry.location
+//       });
+//       google.maps.event.addListener(marker, 'click', function() {
+//         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+//           'Place ID: ' + place.place_id + '<br>' +
+//           place.formatted_address + '</div>');
+//         infowindow.open(map, this);
+//       });
+//     }
+//   });

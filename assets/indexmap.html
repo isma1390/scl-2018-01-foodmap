@@ -5,7 +5,8 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Food Map</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,22 +22,34 @@
         </div>
         <div class="col-sm tituloPage">
           <div>
-            <h1>FOOD MAP</h1>
+            <h1>FOOD MAP<i class="fas fa-feather"></i></h1>
           </div>
+          <div id="map"></div>
           <div>
-            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-            <button id="pruebaBuscar" onclick="initMap()">Prueba</button>
-            <div id="map"></div>
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Buscador</span>
+              </div>
+              <input type="text" id="pac-input" class="form-control" aria-describedby="inputGroup-sizing-sm">
+            </div>
           </div>
-        </div>
-        <div class="col-sm">
-        </div>
+          </div>
+          <div class="col-sm">
+
+
+          </div>
+        
       </div>
     </div>
   </section>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCizWz_tKgkze_s_02-GDEAC4Zogn0R2IQ&libraries=places&callback=initAutocomplete"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbbYBtUgO4SHrIr7GQPGhfr4TPp28W9EE&libraries=places&callback=initMap"></script>
   <script src="main.js"></script>
-  <script src="map.js"></script>
 </body>
 
 </html>
