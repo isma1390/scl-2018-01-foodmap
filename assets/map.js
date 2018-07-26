@@ -1,13 +1,3 @@
-window.onload = () => { 
-function timeout() {
-  window.setTimeout("redirect()", 2000);
-}
-
-function redirect() {
-  window.location = "indexmap.html";
-}
-
-}
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.47269, lng: -70.64724 },
