@@ -1,31 +1,33 @@
-window.onload = () => {
-  function timeout() {
-    window.setTimeout("redirect()", 2000);
-  }
-
-  function redirect() {
-    window.location = "indexmap.html";
-  }
+// Vista splah 4 segundos
+let second = () => {
+  document.getElementById("firstSection").style.display = "none";
+  document.getElementById("secondSection").style.display = "block";
 };
 
+window.onload = () => {
+  setTimeout(second, 4000);
+};
+
+// zoom imagen 
+$("#zoom_01").elevateZoom();
+
+// Se ejecuta el call back de api google maps
 function initMap() {
   let map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.4, lng: -70.6 },
     zoom: 15,
     mapTypeId: "roadmap",
     radius: "500"
-
   });
   let infoWindow = new google.maps.InfoWindow();
 
   // Create the search box and link it to the UI element.
-  let input = document.getElementById("pac-input");
-  input.value = "";
+  let input = document.getElementById("inputSearch");
+  
   let searchBox = new google.maps.places.SearchBox(input);
 
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  // Bias the SearchBox results towards current map's viewport.
+
   map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
@@ -49,17 +51,17 @@ function initMap() {
     // For each place, get the icon, name and location.
     let bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
-      if (!place.geometry) {     
+      if (!place.geometry) {
         return;
-      } 
+      }
 
       // forma de comparar en una function
-      // funcion en linea 
-      if(place.types.filter(x => x == "restaurant","food",).length == 0){
-       return; 
+      // funcion en linea
+      if (place.types.filter(x => x == "restaurant", "food").length == 0) {
+        return;
       }
-      
-      console.log(place)
+
+      console.log(place);
 
       let icon = {
         url: place.icon,
@@ -95,7 +97,7 @@ function initMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-  
+
         infoWindow.setPosition(pos);
         infoWindow.setContent("Ubicación actual");
         infoWindow.open(map);
@@ -121,4 +123,3 @@ function initMap() {
     infoWindow.open(map);
   }
 }
-
