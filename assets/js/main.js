@@ -9,7 +9,7 @@ window.onload = () => {
 };
 
 // zoom imagen 
-$("#zoom_01").elevateZoom();
+//$("#zoom_01").elevateZoom();
 
 // Se ejecuta el call back de api google maps
 function initMap() {
@@ -57,10 +57,13 @@ function initMap() {
 
       // forma de comparar en una function
       // funcion en linea
-      if (place.types.filter(x => x == "restaurant", "food").length == 0) {
-        return;
+      if (place.types.filter(x => x == "restaurant", "food").length == 0) {     
+      alert("Por favor, solo introducir nombres de restaurant");
       }
-
+      return;
+      
+      
+      
       console.log(place);
 
       let icon = {
